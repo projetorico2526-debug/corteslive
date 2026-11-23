@@ -48,6 +48,14 @@
   </div>
 </main>
 <script>
+// vindo da página de obrigado da Hotmart: preenche o que a Hotmart mandar no link
+(() => {
+  const q = new URLSearchParams(location.search);
+  const t = q.get('transaction') || q.get('transacao') || q.get('hottok_transaction') || '';
+  const e = q.get('email') || q.get('buyer_email') || '';
+  if (/^HP/i.test(t)) document.getElementById('trans').value = t.toUpperCase();
+  if (e.includes('@')) document.getElementById('email').value = e;
+})();
 document.getElementById('bt').onclick = async () => {
   const msg = document.getElementById('msg'), box = document.getElementById('chave');
   msg.textContent = 'Procurando a sua compra…'; box.style.display = 'none';
@@ -58,7 +66,7 @@ document.getElementById('bt').onclick = async () => {
     });
     const j = await r.json();
     if (j.ok) { box.textContent = j.chave; box.style.display = 'block'; msg.textContent = 'Copie a chave acima e cole no programa. Ela funciona em até 2 computadores.'; }
-    else msg.textContent = j.erro || 'Não encontramos a compra.';
+    else msg.textContent = (j.erro || 'Não encontramos a compra.') + ' Se você acabou de pagar, espere 1 minuto e tente de novo (no boleto e no Pix pode levar mais, até o pagamento ser aprovado).';
   } catch (e) { msg.textContent = 'Sem conexão. Tente de novo em instantes.'; }
 };
 </script>
