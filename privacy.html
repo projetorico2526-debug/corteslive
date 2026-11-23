@@ -16,25 +16,32 @@
 <main class="doc">
   <span class="lingua">English</span>
   <h1>Privacy Policy</h1>
-  <p class="data">Last updated: November 22, 2026</p>
+  <p class="data">Last updated: November 23, 2026</p>
   <h2>What the app accesses</h2>
-  <p>Through TikTok's official Login Kit, and only with the user's permission, the app receives an access token to:</p>
+  <p><b>TikTok.</b> Through TikTok's official Login Kit, and only with the user's permission, the app receives an access token to:</p>
   <ul>
     <li><b>user.info.basic</b>: read basic profile information (display name and avatar), shown on the posting screen;</li>
     <li><b>video.upload</b> and <b>video.publish</b>: upload the clips the user chooses, as a draft or as a direct post.</li>
   </ul>
+  <p><b>YouTube.</b> CortesLive Studio uses the <b>YouTube API Services</b>. When the user clicks “Conectar YouTube” and signs in with Google, the app asks for:</p>
+  <ul>
+    <li><b>youtube.upload</b>: upload, as a YouTube Short on the user's own channel, only the clip the user selects, with the title, description and privacy the user reviewed (videos.insert);</li>
+    <li><b>youtube.readonly</b>: read the name and ID of the user's own channel (channels.list, mine=true) to show which channel is connected.</li>
+  </ul>
+  <p>The app does not read, download, analyze, edit or delete any other YouTube videos, comments, playlists, analytics or data. By using the YouTube features, you agree to be bound by the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>, and Google's handling of your data is described in the <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
   <h2>Where data is stored</h2>
-  <p>Everything stays on the user's own computer. The access token is encrypted with Windows Data Protection (DPAPI) and can only be read by the user's Windows account. The app has no server of its own and does not sell or share data with third parties. Videos are sent directly from the user's computer to TikTok.</p>
+  <p>The access tokens (TikTok and YouTube) stay on the user's own computer, encrypted with Windows Data Protection (DPAPI), and can only be read by the user's Windows account. They are never sent to us. Videos go directly from the user's computer to TikTok or YouTube.</p>
+  <p>We run a small server (Cloudflare Worker) only to: (1) exchange the login code for tokens, because the OAuth client secret cannot be inside the app (the tokens pass through and are not stored); (2) check the license key; (3) receive support messages the user chooses to send. For license delivery we keep the buyer's name, e-mail and purchase code received from Hotmart. We do not store any YouTube or TikTok data, and we do not sell or share data with third parties.</p>
   <h2>Video processing</h2>
-  <p>The analysis of the live streams (speech transcription and choosing the best moments) runs locally on the user's computer. No video is sent anywhere except to TikTok, and only when the user clicks “Post”.</p>
-  <h2>Deleting your data</h2>
-  <p>Click “Disconnect” in the TikTok tab of the app (this deletes the saved access), or remove the app in TikTok under Settings › Security › Apps and services.</p>
+  <p>The analysis of the live streams (speech transcription and choosing the best moments) runs locally on the user's computer. No video is sent anywhere except to TikTok or YouTube, and only when the user clicks the post/upload button.</p>
+  <h2>Deleting your data and revoking access</h2>
+  <p>Click “Desconectar” (Disconnect) next to TikTok or YouTube in the app's “Postar” tab: this revokes the access and deletes the saved tokens from the computer. You can also revoke CortesLive Studio's access to your Google account at any time at <a href="https://security.google.com/settings/security/permissions">Google security settings › Third-party access</a>, and in TikTok under Settings › Security › Apps and services. To delete license or support data we keep, e-mail us and we delete it within 30 days.</p>
   <h2>Contact</h2>
   <p><a href="mailto:fsmvcsm@gmail.com">fsmvcsm@gmail.com</a></p>
   <hr>
   <span class="lingua">Português</span>
   <h1>Política de Privacidade</h1>
-  <p>Pelo login oficial do TikTok, e só com a sua autorização, o programa recebe um acesso para ler o nome e a foto do seu perfil e enviar os cortes que você escolher. Tudo fica no seu computador: o acesso é guardado criptografado pelo Windows e só o seu usuário consegue ler. O programa não tem servidor próprio e não compartilha seus dados com ninguém. A análise das lives roda no seu PC, e os vídeos só vão para o TikTok quando você clica em “Postar”. Para apagar os dados, clique em “Desconectar” no programa ou remova o app nas configurações do TikTok. Contato: <a href="mailto:fsmvcsm@gmail.com">fsmvcsm@gmail.com</a>.</p>
+  <p>Pelo login oficial do TikTok e do Google, e só com a sua autorização, o programa recebe um acesso para mostrar o nome da sua conta/canal e enviar os cortes que você escolher (no YouTube, como Shorts no seu próprio canal). O CortesLive usa os Serviços de API do YouTube: ao usar essa função, você concorda com os <a href="https://www.youtube.com/t/terms">Termos de Serviço do YouTube</a>, e a <a href="https://policies.google.com/privacy">Política de Privacidade do Google</a> se aplica. Os acessos ficam no seu computador, criptografados pelo Windows; nosso servidor só faz a troca do código de login (sem guardar nada), confere a licença e recebe mensagens de suporte. Guardamos nome, e-mail e código da compra vindos da Hotmart para entregar a chave. Não vendemos nem compartilhamos dados. A análise das lives roda no seu PC, e os vídeos só saem quando você clica para postar. Para apagar os dados, clique em “Desconectar” no programa, revogue o acesso em <a href="https://security.google.com/settings/security/permissions">security.google.com/settings/security/permissions</a> ou no TikTok, e peça por e-mail a exclusão dos dados de compra/suporte. Contato: <a href="mailto:fsmvcsm@gmail.com">fsmvcsm@gmail.com</a>.</p>
 </main>
 <footer><div class="wrap"><span>© 2026 CortesLive Studio</span><span><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a></span></div></footer>
 </body>
