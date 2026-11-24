@@ -3,103 +3,330 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CortesLive Studio · Cortes automáticos das suas lives para TikTok</title>
-<meta name="description" content="A IA assiste a sua live, encontra os melhores momentos e entrega cortes verticais editados, com legenda e efeitos, prontos para o TikTok, Reels e Shorts.">
+<title>CortesLive Studio · Sua live vira corte sozinha</title>
+<meta name="description" content="A IA assiste a sua live inteira, sem limite de horas, acha os melhores momentos e entrega cortes verticais com legenda, efeitos e título, prontos para TikTok, Reels e Shorts. Pagamento único.">
 <link rel="icon" href="logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #07050d; --bg2: #0e0a18; --card: #120d20; --line: #2a2140;
+  --rosa: #ff2d95; --ciano: #2ee6f0; --laranja: #ff8a1c; --amarelo: #ffd640; --creme: #fff4e6; --sub: #a79fc4;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--creme); font: 500 16px/1.55 'Barlow', 'Segoe UI', sans-serif; overflow-x: hidden; }
+a { color: inherit; text-decoration: none; }
+.wrap { width: min(1120px, 100% - 32px); margin: 0 auto; }
+.anton { font-family: 'Anton', Impact, sans-serif; text-transform: uppercase; letter-spacing: .5px; font-weight: 400; }
+.kicker { font: 700 13px 'Barlow', sans-serif; letter-spacing: 3px; text-transform: uppercase; color: var(--ciano); }
+
+/* topo */
+header { position: sticky; top: 0; z-index: 50; background: rgba(7,5,13,.82); backdrop-filter: blur(10px); border-bottom: 1px solid #1a1428; }
+header .wrap { display: flex; align-items: center; gap: 24px; height: 66px; }
+.marca { display: flex; align-items: center; gap: 10px; }
+.marca img { width: 38px; height: 38px; border-radius: 10px; }
+.marca b { font: 26px/1 'Anton', Impact, sans-serif; letter-spacing: 1px; }
+.marca small { display: block; font: 700 10px 'Barlow'; letter-spacing: 4px; color: var(--sub); }
+nav { display: flex; gap: 22px; margin-left: auto; }
+nav a { font: 700 13px 'Barlow'; letter-spacing: 2px; text-transform: uppercase; color: #cfc6ee; }
+nav a:hover { color: var(--ciano); }
+.bt { display: inline-flex; align-items: center; gap: 10px; padding: 14px 26px; font: 18px 'Anton', Impact, sans-serif;
+      text-transform: uppercase; letter-spacing: 1.5px; border: 0; cursor: pointer; transition: transform .15s, filter .15s; }
+.bt:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.bt.pri { background: linear-gradient(90deg, var(--laranja), var(--rosa)); color: #170010; clip-path: polygon(0 0, 100% 0, 96% 100%, 0 100%); box-shadow: 6px 6px 0 rgba(46,230,240,.55); }
+.bt.sec { background: transparent; color: var(--creme); border: 2px solid #3a2f5c; }
+.bt.mini { padding: 10px 18px; font-size: 15px; }
+
+/* herói com pôr do sol de Vice City */
+.heroi { position: relative; padding: 70px 0 0; overflow: hidden;
+  background: radial-gradient(1200px 520px at 50% 108%, rgba(255,64,129,.42), transparent 62%),
+              linear-gradient(180deg, #07050d 0%, #160a27 46%, #3a0f3f 78%, #5b1440 100%); }
+.heroi::before { content: ""; position: absolute; left: 50%; bottom: -120px; width: 620px; height: 620px; transform: translateX(-50%);
+  border-radius: 50%; background: linear-gradient(180deg, #ffd640 0%, #ff8a1c 45%, #ff2d95 85%);
+  -webkit-mask: repeating-linear-gradient(180deg, #000 0 22px, transparent 22px 30px); mask: repeating-linear-gradient(180deg, #000 0 22px, transparent 22px 30px);
+  opacity: .5; filter: blur(.4px); }
+.heroi::after { content: ""; position: absolute; inset: auto 0 0 0; height: 170px;
+  background: linear-gradient(transparent, var(--bg)), repeating-linear-gradient(90deg, rgba(46,230,240,.18) 0 1px, transparent 1px 70px);
+  transform: perspective(300px) rotateX(55deg); transform-origin: bottom; }
+.heroi .wrap { position: relative; z-index: 2; text-align: center; }
+.heroi h1 { font: clamp(46px, 8.4vw, 104px)/.95 'Anton', Impact, sans-serif; text-transform: uppercase; margin: 14px 0 18px; }
+.heroi h1 .risco { position: relative; background: linear-gradient(90deg, var(--amarelo), var(--laranja), var(--rosa));
+  -webkit-background-clip: text; background-clip: text; color: transparent; }
+.heroi h1 .risco::after { content: ""; position: absolute; left: -4%; right: -4%; top: 52%; height: 6px; background: var(--ciano); transform: rotate(-3deg); box-shadow: 0 0 14px var(--ciano); }
+.heroi p.lead { max-width: 640px; margin: 0 auto 28px; color: #d9d2f2; font-size: 18px; }
+.ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.selos { margin: 18px 0 0; font: 700 12px 'Barlow'; letter-spacing: 2.5px; text-transform: uppercase; color: var(--sub); }
+.selos b { color: var(--amarelo); }
+
+/* moldura HUD com os cortes */
+.hud { position: relative; margin: 46px auto 0; padding: 26px 22px 30px; max-width: 980px; background: rgba(14,10,24,.78);
+       border: 1px solid #2b2244; }
+.hud::before, .hud::after, .hud > i::before, .hud > i::after { content: ""; position: absolute; width: 18px; height: 18px; border: 2px solid var(--ciano); }
+.hud::before { left: -2px; top: -2px; border-right: 0; border-bottom: 0; } .hud::after { right: -2px; top: -2px; border-left: 0; border-bottom: 0; }
+.hud > i::before { left: -2px; bottom: -2px; border-right: 0; border-top: 0; } .hud > i::after { right: -2px; bottom: -2px; border-left: 0; border-top: 0; }
+.cortes4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.cel { position: relative; aspect-ratio: 9/16; border: 2px solid #3a2f5c; overflow: hidden; background: #000; transition: transform .2s; }
+.cel:hover { transform: translateY(-6px) rotate(-1deg); border-color: var(--rosa); }
+.cel img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tag { position: absolute; top: 8px; left: 8px; padding: 3px 9px; font: 13px 'Anton'; letter-spacing: 1px; color: #120010; }
+.nota { position: absolute; bottom: 8px; left: 8px; right: 8px; display: flex; justify-content: space-between; align-items: end;
+        font: 700 12px 'Barlow'; color: #fff; text-shadow: 0 1px 3px #000; }
+.nota b { font: 26px/1 'Anton'; color: var(--amarelo); }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 22px; }
+.chip { padding: 9px 14px; border: 1px solid #3a2f5c; font: 15px 'Anton'; letter-spacing: 1.2px; text-transform: uppercase; color: #ddd5f7; background: #110c1e; }
+.chip.on { background: var(--ciano); color: #031216; border-color: var(--ciano); }
+
+/* faixa inclinada */
+.faixa { margin: 70px 0 10px; transform: rotate(-2.2deg); background: var(--laranja); color: #1b0b00; overflow: hidden; white-space: nowrap; box-shadow: 0 10px 40px rgba(255,138,28,.25); }
+.faixa div { display: inline-block; padding: 12px 0; font: 19px 'Anton'; letter-spacing: 2px; animation: rola 32s linear infinite; }
+.faixa span { margin: 0 22px; }
+@keyframes rola { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+section { padding: 90px 0; }
+h2.grande { font: clamp(38px, 6vw, 72px)/1 'Anton', Impact, sans-serif; text-transform: uppercase; margin: 10px 0 30px; }
+h2.grande em { font-style: normal; color: var(--laranja); }
+h2.grande .ciano { color: var(--ciano); }
+
+/* linha do tempo / onda */
+.onda { position: relative; padding: 20px 20px 14px; background: var(--card); border: 1px solid var(--line); }
+.onda .topo { display: flex; flex-wrap: wrap; gap: 6px 16px; justify-content: space-between; font: 700 13px 'Barlow'; letter-spacing: 2px; text-transform: uppercase; color: var(--sub); margin-bottom: 46px; }
+.onda .topo b { color: var(--ciano); }
+.barras { position: relative; display: flex; align-items: center; gap: 3px; height: 130px; }
+.barras i { flex: 1; background: #3a3350; border-radius: 2px; }
+.barras i.q { background: linear-gradient(180deg, var(--amarelo), var(--rosa)); box-shadow: 0 0 10px rgba(255,45,149,.45); }
+.marcador { position: absolute; top: -30px; padding: 2px 8px; font: 12px 'Anton'; letter-spacing: 1px; background: var(--rosa); color: #fff; }
+.tempos { display: flex; justify-content: space-between; margin-top: 10px; font: 700 12px 'Barlow'; color: #6d6589; letter-spacing: 1px; }
+.passos { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 46px; }
+.passo b { display: block; font: 74px/1 'Anton'; color: transparent; -webkit-text-stroke: 2px var(--rosa); }
+.passo h3 { font: 26px 'Anton'; text-transform: uppercase; margin: 8px 0 6px; }
+.passo p { color: var(--sub); }
+
+/* recursos */
+.grade { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.rec { position: relative; padding: 26px 24px; background: var(--card); border: 1px solid var(--line); transition: border-color .2s, transform .2s; }
+.rec:hover { border-color: var(--ciano); transform: translateY(-4px); }
+.rec .n { font: 14px 'Anton'; color: var(--rosa); letter-spacing: 2px; }
+.rec h3 { font: 24px/1.1 'Anton'; text-transform: uppercase; margin: 8px 0; }
+.rec p { color: var(--sub); font-size: 15px; }
+.rec .so { position: absolute; top: 18px; right: 16px; font: 700 10px 'Barlow'; letter-spacing: 2px; color: #031216; background: var(--ciano); padding: 3px 7px; }
+
+/* streamers */
+.str { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
+.lista-str { background: var(--card); border: 1px solid var(--line); padding: 14px; }
+.lista-str div { display: flex; align-items: center; gap: 12px; padding: 12px; border-bottom: 1px solid #201a33; font-weight: 600; }
+.lista-str div:last-child { border: 0; }
+.lista-str .vivo { color: var(--rosa); } .lista-str .vivo::before { content: "●"; animation: pisca 1.2s infinite; }
+.lista-str .off { color: #6d6589; } .lista-str .off::before { content: "●"; }
+.lista-str small { margin-left: auto; color: var(--sub); font-weight: 500; }
+@keyframes pisca { 50% { opacity: .25; } }
+
+/* preço */
+.preco { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: stretch; }
+.plano { position: relative; padding: 36px 32px; background: linear-gradient(160deg, #1b0f2e, #120d20); border: 2px solid var(--rosa); box-shadow: 10px 10px 0 rgba(46,230,240,.35); }
+.plano .fita { position: absolute; top: -14px; left: 28px; background: var(--amarelo); color: #1b1300; font: 14px 'Anton'; letter-spacing: 1.5px; padding: 4px 12px; }
+.plano .valor { font: 84px/1 'Anton'; margin: 12px 0 2px; } .plano .valor small { font-size: 26px; }
+.plano ul { list-style: none; margin: 20px 0 26px; } .plano li { padding: 7px 0 7px 30px; position: relative; }
+.plano li::before { content: ""; position: absolute; left: 0; top: 12px; width: 16px; height: 10px; border-left: 3px solid var(--ciano); border-bottom: 3px solid var(--ciano); transform: rotate(-45deg); }
+.comp { background: var(--card); border: 1px solid var(--line); padding: 28px; }
+.comp h3 { font: 26px 'Anton'; text-transform: uppercase; margin-bottom: 14px; }
+.comp table { width: 100%; border-collapse: collapse; font-size: 15px; }
+.comp td { padding: 10px 6px; border-bottom: 1px solid #201a33; } .comp td:last-child { text-align: right; font-weight: 700; color: var(--ciano); }
+
+/* chave */
+.chave-passos { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.chave-passos div { padding: 20px; background: var(--card); border: 1px solid var(--line); }
+.chave-passos b { font: 34px 'Anton'; color: var(--laranja); }
+.aviso { margin-top: 20px; padding: 14px 18px; border: 1px solid var(--amarelo); color: #ffe7a8; text-align: center; }
+
+.final { text-align: center; position: relative; overflow: hidden;
+  background: radial-gradient(800px 360px at 50% 120%, rgba(255,45,149,.35), transparent 70%); }
+#sobre { padding: 40px 0; border-top: 1px solid #1a1428; }
+#sobre h2 { font: 22px 'Anton'; letter-spacing: 1px; margin-bottom: 8px; }
+#sobre p { color: var(--sub); font-size: 15px; max-width: 900px; }
+#sobre a, .aviso a, .chave-passos a { color: var(--ciano); text-decoration: underline; }
+footer { padding: 28px 0 40px; border-top: 1px solid #1a1428; color: #6d6589; font-size: 14px; }
+footer .wrap { display: flex; flex-wrap: wrap; gap: 14px 24px; justify-content: space-between; }
+footer a { margin-left: 18px; color: #a79fc4; }
+
+.surge { opacity: 0; transform: translateY(26px); transition: opacity .7s, transform .7s; }
+.surge.vis { opacity: 1; transform: none; }
+
+@media (max-width: 860px) {
+  nav { display: none; }
+  .cortes4 { grid-template-columns: repeat(2, 1fr); }
+  .passos, .grade, .str, .preco, .chave-passos { grid-template-columns: 1fr; }
+  .heroi::before { width: 420px; height: 420px; }
+  section { padding: 64px 0; }
+}
+</style>
 </head>
 <body>
 <header><div class="wrap">
-  <a class="marca" href="./"><img src="logo.png" alt="">CortesLive Studio</a>
-  <nav><a href="minha-chave.html">Minha chave</a><a href="#recursos">Recursos</a><a href="#como">Como funciona</a><a href="#cortes">Cortes</a><a href="privacy.html">Privacidade</a><a href="terms.html">Termos</a></nav>
+  <a class="marca" href="./"><img src="logo.png" alt=""><span><b>CORTESLIVE</b><small>STUDIO</small></span></a>
+  <nav><a href="#como">Como funciona</a><a href="#recursos">Recursos</a><a href="#streamers">Streamers</a><a href="#preco">Preço</a><a href="minha-chave.html">Minha chave</a></nav>
+  <a class="bt pri mini" href="https://pay.hotmart.com/Q108612296G">Comprar</a>
 </div></header>
 
-<div class="capa"><div class="wrap">
-  <div>
-    <span class="selo">🎮 Feito para streamers · Windows</span>
-    <h1>Sua live vira <span>cortes virais</span> sozinha</h1>
-    <p>A IA assiste a sua live inteira, encontra os melhores momentos e entrega os cortes verticais já editados, com legenda, efeitos e título, prontos para postar no TikTok, Reels e Shorts.</p>
-    <div class="botoes">
-      <a class="bt pri" href="https://pay.hotmart.com/Q108612296G">Comprar agora · R$ 90</a>
-      <a class="bt sec" href="minha-chave.html">Já comprei: pegar minha chave</a>
+<div class="heroi"><div class="wrap">
+  <span class="kicker">IA que corta live de gameplay, IRL e conversa</span>
+  <h1>Sua live vira<br><span class="risco">corte</span> sozinha.</h1>
+  <p class="lead">A IA assiste a sua live inteira, <b>sem limite de horas</b>, acha os melhores momentos e entrega os cortes verticais com legenda, efeitos e título. É só clicar em postar.</p>
+  <div class="ctas">
+    <a class="bt pri" href="https://pay.hotmart.com/Q108612296G">Quero os meus cortes · R$ 90</a>
+    <a class="bt sec" href="#como">Ver como funciona</a>
+  </div>
+  <p class="selos"><b>Pagamento único</b> / sem mensalidade / 7 dias de garantia / até 12x</p>
+
+  <div class="hud"><i></i>
+    <div class="cortes4">
+      <div class="cel"><span class="tag" style="background:var(--ciano)">TIKTOK</span><img src="corte2.jpg" alt="Corte vertical de live"><div class="nota"><span>0:45</span><b>9.4</b></div></div>
+      <div class="cel"><span class="tag" style="background:var(--rosa)">REELS</span><img src="corte1.jpg" alt="Corte vertical de live"><div class="nota"><span>0:51</span><b>9.1</b></div></div>
+      <div class="cel"><span class="tag" style="background:var(--laranja)">SHORTS</span><img src="corte3.jpg" alt="Corte vertical de live"><div class="nota"><span>0:43</span><b>8.8</b></div></div>
+      <div class="cel"><span class="tag" style="background:var(--amarelo)">KWAI</span><img src="corte4.jpg" alt="Corte vertical de live"><div class="nota"><span>0:48</span><b>8.6</b></div></div>
+    </div>
+    <div class="chips">
+      <span class="chip on">✂ Corte com IA</span><span class="chip">Legenda animada</span><span class="chip">Câmera em cima</span>
+      <span class="chip">Título gancho</span><span class="chip">Moldura neon</span><span class="chip">Posta sozinho</span>
     </div>
   </div>
-  <div class="celulares">
-    <div class="cel a"><img src="corte3.jpg" alt="Exemplo de corte vertical"></div>
-    <div class="cel b"><img src="corte2.jpg" alt="Exemplo de corte vertical com OVNI"></div>
-  </div>
 </div></div>
 
-<section id="sobre" style="padding:28px 0 8px"><div class="wrap" style="max-width:900px">
-  <h2 style="font-size:22px;margin:0 0 8px">About CortesLive Studio</h2>
-  <p style="color:#cfc8ee;line-height:1.6;margin:0 0 8px">CortesLive Studio is a Windows desktop app for live streamers. It analyzes the streamer's own live stream on his or her computer and creates short vertical clips with captions. Optionally, the user can connect his or her TikTok account and YouTube channel (Sign in with Google) and upload a chosen clip as a TikTok video or a YouTube Short to his or her own account. The app only uses the YouTube Data API to upload the clip the user selects (youtube.upload) and to show the connected channel name (youtube.readonly). Everything is explained in our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>. Contact: <a href="mailto:fsmvcsm@gmail.com">fsmvcsm@gmail.com</a>.</p>
-</div></section>
-
-<div class="numeros"><div class="wrap">
-  <div><b>9H → 20</b><span>uma live de 9 horas vira 20 cortes</span></div>
-  <div><b>1080×1920</b><span>vertical em alta qualidade</span></div>
-  <div><b>100%</b><span>no seu PC, sem mensalidade</span></div>
-  <div><b>1 CLIQUE</b><span>para postar no TikTok</span></div>
+<div class="faixa"><div>
+  <span>LIVES SEM LIMITE DE HORAS</span>◆<span>CÂMERA EM CIMA, JOGO EMBAIXO</span>◆<span>LEGENDA PALAVRA POR PALAVRA</span>◆<span>POSTA NO TIKTOK E NO SHORTS</span>◆<span>CORTE DE STREAMER FAMOSO</span>◆<span>100% EM PORTUGUÊS</span>◆
+  <span>LIVES SEM LIMITE DE HORAS</span>◆<span>CÂMERA EM CIMA, JOGO EMBAIXO</span>◆<span>LEGENDA PALAVRA POR PALAVRA</span>◆<span>POSTA NO TIKTOK E NO SHORTS</span>◆<span>CORTE DE STREAMER FAMOSO</span>◆<span>100% EM PORTUGUÊS</span>◆
 </div></div>
 
-<section id="recursos"><div class="wrap">
-  <div class="titulo-sec"><h2>Tudo que um editor faria</h2><p>Só que em minutos, e sem você encostar na timeline.</p></div>
-  <div class="grade">
-    <div class="card"><div class="ic">🧠</div><h3>IA que assiste a live</h3><p>Mede suas reações, entende o que você fala e olha as imagens do jogo para escolher os momentos que prendem.</p></div>
-    <div class="card"><div class="ic">💬</div><h3>Legenda palavra por palavra</h3><p>Sincronizada com a sua voz, com animações. As falas dos personagens do jogo ficam de fora.</p></div>
-    <div class="card"><div class="ic">✨</div><h3>Edição com efeitos</h3><p>Câmera em cima, jogo embaixo, moldura neon, zoom nos gritos, título gancho e barra de progresso.</p></div>
-    <div class="card"><div class="ic">🎥</div><h3>Câmera em HD com IA</h3><p>Sua webcam ganha nitidez com IA de super-resolução, mesmo vindo de uma live em 720p.</p></div>
-    <div class="card"><div class="ic">🔇</div><h3>Censura opcional</h3><p>Liga e desliga: palavrão vira “piii” no áudio e P*** na legenda, para não perder alcance.</p></div>
-    <div class="card"><div class="ic">🚀</div><h3>Posta no TikTok e no Shorts</h3><p>Conecte o TikTok e o YouTube pelo login oficial e envie cada corte com título, descrição e hashtags prontos.</p></div>
+<section id="como"><div class="wrap">
+  <span class="kicker">Como funciona</span>
+  <h2 class="grande surge">De 4 horas de live pra <em>11 cortes</em> prontos.</h2>
+  <div class="onda surge">
+    <div class="topo"><span>● live_gta6_sexta.mp4 · 4:04:42</span><b>11 momentos achados</b></div>
+    <div class="barras" id="barras"></div>
+    <div class="tempos"><span>0:00</span><span>1:00:00</span><span>2:00:00</span><span>3:00:00</span><span>4:04:42</span></div>
   </div>
-</div></section>
-
-<section id="como" style="background:var(--bg2)"><div class="wrap">
-  <div class="titulo-sec"><h2>Como funciona</h2><p>Quatro passos, do VOD ao post.</p></div>
   <div class="passos">
-    <div class="passo"><h3>Escolha a live</h3><p>Clique em “Adicionar vídeo” e selecione o arquivo da sua live (Kick, Twitch, YouTube…).</p></div>
-    <div class="passo"><h3>A IA analisa</h3><p>Transcrição, reações e imagens do jogo: ela acha os melhores momentos e dá nota a cada um.</p></div>
-    <div class="passo"><h3>Cortes prontos</h3><p>Cada corte sai editado, legendado e com título, descrição e hashtags para o post.</p></div>
-    <div class="passo"><h3>Postar</h3><p>Revise, escolha quem pode ver e clique em Postar. Nada é publicado sem o seu clique.</p></div>
+    <div class="passo surge"><b>01</b><h3>Escolhe a live</h3><p>Arraste o vídeo ou cole o link da Kick, Twitch ou YouTube. Pode ser a live inteira, de 4, 6 ou 9 horas.</p></div>
+    <div class="passo surge"><b>02</b><h3>A IA assiste tudo</h3><p>Ouve a sua fala, mede gritos e risadas e olha as imagens do jogo. Dá nota a cada momento e corta no começo e no fim da frase.</p></div>
+    <div class="passo surge"><b>03</b><h3>Revisa e posta</h3><p>Cada corte sai em 9:16, 1080p, com legenda, título e hashtags. Um clique manda pro TikTok ou pro Shorts.</p></div>
+  </div>
+</div></section>
+
+<section id="recursos" style="background:var(--bg2)"><div class="wrap">
+  <span class="kicker">Recursos</span>
+  <h2 class="grande surge">Feito pra quem <span class="ciano">vive de live.</span></h2>
+  <div class="grade">
+    <div class="rec surge"><span class="n">01</span><span class="so">Já funciona</span><h3>Câmera em cima, jogo embaixo</h3><p>Monta o layout de streamer no vertical sozinho, com a sua webcam em HD pela IA.</p></div>
+    <div class="rec surge"><span class="n">02</span><span class="so">Já funciona</span><h3>Pico de reação vira corte</h3><p>Grito, susto e risada contam ponto, mesmo quando você não fala nada.</p></div>
+    <div class="rec surge"><span class="n">03</span><h3>Legenda palavra por palavra</h3><p>Sincronizada com a sua voz, com animações. A fala dos personagens do jogo fica de fora.</p></div>
+    <div class="rec surge"><span class="n">04</span><h3>Título no estilo corte BR</h3><p>Gancho no começo do vídeo e legenda do post pronta, com hashtags do jogo.</p></div>
+    <div class="rec surge"><span class="n">05</span><h3>Molduras e temas</h3><p>Neon, fina, cantos de câmera ou sem moldura, com cores que combinam com o jogo.</p></div>
+    <div class="rec surge"><span class="n">06</span><h3>Censura opcional</h3><p>Palavrão vira “piii” no áudio e P*** na legenda, para não perder alcance.</p></div>
+    <div class="rec surge"><span class="n">07</span><h3>Layout IRL</h3><p>Live de conversa, rua ou só câmera? Tela cheia na vertical, sem cortar o rosto.</p></div>
+    <div class="rec surge"><span class="n">08</span><h3>Posta no TikTok e no Shorts</h3><p>Login oficial das plataformas. Nada é publicado sem o seu clique.</p></div>
+    <div class="rec surge"><span class="n">09</span><h3>Roda no seu PC</h3><p>Sem fila, sem limite de cortes e sem enviar a sua live pra ninguém.</p></div>
+  </div>
+</div></section>
+
+<section id="streamers"><div class="wrap str">
+  <div class="surge">
+    <span class="kicker">Novo · aba Streamers</span>
+    <h2 class="grande">Corta a live <em>dos famosos.</em></h2>
+    <p style="color:var(--sub);font-size:18px">Digite o nome do streamer e o programa procura na Twitch, na Kick e no YouTube, mostra quem está ao vivo e corta a última live com um clique. O crédito “Live de @streamer” entra sozinho na moldura e na legenda.</p>
+    <p style="color:#6d6589;font-size:14px;margin-top:12px">Use só com streamers que permitem cortes.</p>
+  </div>
+  <div class="lista-str surge">
+    <div><span class="vivo"></span>bistecone <small>Kick · GTA VI · ao vivo</small></div>
+    <div><span class="vivo"></span>baiano <small>Twitch · GTA VI · ao vivo</small></div>
+    <div><span class="vivo"></span>ricfazeres <small>Twitch · ao vivo</small></div>
+    <div><span class="off"></span>alanzoka <small>última live: GTA 6</small></div>
+    <div><span class="off"></span>cellbit <small>última live salva</small></div>
+  </div>
+</div></section>
+
+<section id="preco" style="background:var(--bg2)"><div class="wrap">
+  <span class="kicker">Preço</span>
+  <h2 class="grande surge">Paga uma vez. <em>Corta pra sempre.</em></h2>
+  <div class="preco">
+    <div class="plano surge"><span class="fita">ACESSO COMPLETO</span>
+      <div class="anton" style="font-size:28px">CortesLive Studio</div>
+      <div class="valor">R$ 90<small> único</small></div>
+      <div style="color:var(--sub)">ou em até 12x no cartão · Pix · boleto</div>
+      <ul>
+        <li>Lives de qualquer tamanho, sem limite de horas</li>
+        <li>Cortes ilimitados, sem marca d’água</li>
+        <li>Todas as atualizações incluídas</li>
+        <li>Aba Streamers, layouts, molduras e temas</li>
+        <li>Ativa em até 2 computadores</li>
+      </ul>
+      <a class="bt pri" href="https://pay.hotmart.com/Q108612296G">Comprar agora</a>
+      <p style="margin-top:14px;color:#6d6589;font-size:14px">7 dias de garantia pela Hotmart.</p>
+    </div>
+    <div class="comp surge"><h3>O que vem no pacote</h3>
+      <table>
+        <tr><td>Tamanho da live</td><td>Sem limite</td></tr>
+        <tr><td>Quantidade de cortes</td><td>Ilimitada</td></tr>
+        <tr><td>Câmera em cima + jogo</td><td>Sim</td></tr>
+        <tr><td>Corte por reação (grito, susto)</td><td>Sim</td></tr>
+        <tr><td>Postar no TikTok e no Shorts</td><td>Sim</td></tr>
+        <tr><td>Corte de streamer famoso</td><td>Sim</td></tr>
+        <tr><td>Mensalidade</td><td>Nenhuma</td></tr>
+      </table>
+      <p style="margin-top:14px;color:#6d6589;font-size:14px">Requisitos: Windows 10/11 64 bits e 30 GB livres. Recomendado: placa de vídeo NVIDIA (funciona sem, mais devagar).</p>
+    </div>
   </div>
 </div></section>
 
 <section id="chave"><div class="wrap">
-  <div class="titulo-sec"><h2>Depois da compra: onde está a minha chave?</h2><p>A chave de ativação é criada sozinha assim que a Hotmart aprova o pagamento.</p></div>
-  <div class="passos">
-    <div class="passo"><h3>Pague na Hotmart</h3><p>Cartão (até 12x), Pix ou boleto. A Hotmart manda um e-mail com o <b>código da transação</b>, que começa com <b>HP</b>.</p></div>
-    <div class="passo"><h3>Abra “Minha chave”</h3><p>Entre na página <a href="minha-chave.html"><b>Minha chave</b></a>, digite o e-mail da compra e o código HP.</p></div>
-    <div class="passo"><h3>Copie a chave</h3><p>A chave aparece na hora. Na mesma página tem o botão para baixar o instalador.</p></div>
-    <div class="passo"><h3>Ative</h3><p>Abra o programa, cole a chave e clique em <b>Ativar</b>. Vale para até 2 computadores.</p></div>
+  <span class="kicker">Depois da compra</span>
+  <h2 class="grande surge">Onde está a <em>minha chave?</em></h2>
+  <div class="chave-passos">
+    <div class="surge"><b>01</b><p>Pague na Hotmart. O e-mail da compra traz o <b>código da transação</b>, que começa com HP.</p></div>
+    <div class="surge"><b>02</b><p>Abra a página <a href="minha-chave.html">Minha chave</a> e digite o e-mail e o código HP.</p></div>
+    <div class="surge"><b>03</b><p>A chave aparece na hora, junto com o botão para baixar o instalador.</p></div>
+    <div class="surge"><b>04</b><p>Abra o programa, cole a chave e clique em <b>Ativar</b>.</p></div>
   </div>
-  <p style="max-width:760px;margin:18px auto 0;padding:12px 16px;border:1px solid #FFCD50;border-radius:12px;color:#FFE7A8;text-align:center">
-    ⚠ Na instalação, o Windows pode mostrar a tela azul <b>“O Windows protegeu o computador”</b>. É normal com
-    programas novos de desenvolvedores independentes: clique em <b>“Mais informações” → “Executar assim mesmo”</b>.</p>
-  <p style="text-align:center;margin-top:20px"><a class="bt sec" href="minha-chave.html">Já comprei: pegar minha chave</a></p>
+  <p class="aviso">⚠ Na instalação, o Windows pode mostrar a tela azul <b>“O Windows protegeu o computador”</b>. É normal com programas novos de desenvolvedores independentes: clique em <b>“Mais informações” → “Executar assim mesmo”</b>.</p>
+  <p style="text-align:center;margin-top:22px"><a class="bt sec" href="minha-chave.html">Já comprei: pegar minha chave</a></p>
 </div></section>
 
-<section id="cortes"><div class="wrap">
-  <div class="titulo-sec"><h2>Feito com CortesLive</h2><p>Cortes reais gerados automaticamente de uma live de GTA 6.</p></div>
-  <div class="galeria">
-    <img src="corte2.jpg" alt="Corte: OVNI na floresta">
-    <img src="corte1.jpg" alt="Corte de live">
-    <img src="corte3.jpg" alt="Corte de live">
-    <img src="corte4.jpg" alt="Corte de live">
-  </div>
-</div></section>
-
-<section class="cta"><div class="wrap">
-  <h2>Pare de editar. Comece a postar.</h2>
-  <p>Pagamento único, sem mensalidade. Até 12x no cartão e 7 dias de garantia.</p>
+<section class="final"><div class="wrap">
+  <h2 class="grande surge">Para de editar.<br><em>Começa a postar.</em></h2>
   <a class="bt pri" href="https://pay.hotmart.com/Q108612296G">Quero o CortesLive · R$ 90</a>
 </div></section>
 
+<div id="sobre"><div class="wrap">
+  <h2>About CortesLive Studio</h2>
+  <p>CortesLive Studio is a Windows desktop app for live streamers. It analyzes the streamer's own live stream on his or her computer and creates short vertical clips with captions. Optionally, the user can connect his or her TikTok account and YouTube channel (Sign in with Google) and upload a chosen clip as a TikTok video or a YouTube Short to his or her own account. The app only uses the YouTube Data API to upload the clip the user selects (youtube.upload) and to show the connected channel name (youtube.readonly). Everything is explained in our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms of Service</a>. Contact: <a href="mailto:fsmvcsm@gmail.com">fsmvcsm@gmail.com</a>.</p>
+</div></div>
+
 <footer><div class="wrap">
-  <span>© 2026 CortesLive Studio</span>
+  <span>© 2026 CortesLive Studio · Não temos ligação com a Rockstar Games, Twitch, Kick, TikTok ou YouTube; as marcas são dos seus donos.</span>
   <span><a href="terms.html">Terms of Service</a><a href="privacy.html">Privacy Policy</a><a href="mailto:fsmvcsm@gmail.com">Contato</a></span>
 </div></footer>
+
+<script>
+// onda da linha do tempo: barras com 11 momentos em destaque
+(function () {
+  const el = document.getElementById('barras'), n = window.innerWidth < 700 ? 70 : 150;
+  const momentos = [9, 17, 26, 33, 47, 55, 64, 72, 83, 89, 96].map(p => Math.round(p / 100 * n));
+  for (let i = 0; i < n; i++) {
+    const b = document.createElement('i');
+    const perto = momentos.some(m => Math.abs(m - i) <= 1);
+    b.style.height = (perto ? 62 + Math.random() * 38 : 14 + Math.random() * 46) + '%';
+    if (perto) b.className = 'q';
+    el.appendChild(b);
+  }
+  [[9, '0:45'], [47, '0:51'], [83, '0:43']].forEach(([p, d], k) => {
+    const m = document.createElement('span');
+    m.className = 'marcador'; m.style.left = `calc(${p}% - 30px)`; m.textContent = `CORTE 0${k + 1} · ${d}`;
+    el.appendChild(m);
+  });
+})();
+// elementos surgem ao rolar
+const obs = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('vis'); obs.unobserve(e.target); } }), { threshold: .15 });
+document.querySelectorAll('.surge').forEach(e => obs.observe(e));
+</script>
 </body>
 </html>
